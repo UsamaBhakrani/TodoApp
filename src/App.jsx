@@ -15,12 +15,6 @@ const App = () => {
     setNewItem("");
   };
 
-  const handleOnDelete = (id) => {
-    if (todos.id === id) {
-      todos.filter((todo) => todo.id === id);
-    }
-  };
-
   return (
     <div>
       <form onSubmit={handleOnSubmit} action="" className="form-control">
@@ -45,7 +39,9 @@ const App = () => {
               <button
                 className="btn btn-danger"
                 id={todos.id}
-                onClick={(id) => console.log(id)}
+                onDelete={(id) =>
+                  setTodos(todos.filter((e) => e.id !== id))
+                }
               >
                 Delete
               </button>
