@@ -11,7 +11,7 @@ const App = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    setTodos([...todos, { id: 4 + 1, name: newItem }]);
+    setTodos([...todos, { id: crypto.randomUUID() + 1, name: newItem }]);
   };
 
   return (
