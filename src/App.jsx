@@ -5,14 +5,13 @@ const App = () => {
   const [todos, setTodos] = useState([
     { id: 1, name: "Todo1" },
     { id: 2, name: "Todo2" },
-    { id: 3, name: "Todo3" },
-    { id: 4, name: "Todo4" },
+    { id: 3, name: "Todo2" },
+    { id: 4, name: "Todo2" },
   ]);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    setTodos([...todos, { id: crypto.randomUUID() + 1, name: newItem }]);
-    setNewItem("");
+    setTodos([...todos, { id: 4 + 1, name: newItem }]);
   };
 
   return (
@@ -26,26 +25,27 @@ const App = () => {
           id="todo"
           type="text"
           className="input-control"
-          onChange={(e) => setNewItem(e.target.value)}
+          onChange={(e) => {
+            setNewItem(e.target.value);
+          }}
         />
         <button className="btn btn-primary">Add Todo</button>
       </form>
       <div>
         <ul>
-          {todos.map((todo) => (
-            <div className="flex justify-content" key={todo.id}>
-              <input type="checkbox" name="list" id={todos.id} />
-              <li id={todos.id}>{todo.name}</li>
+          {todos.map(({ id, name }) => (
+            <li key={id}>
+              <input type="checkbox" name="list" />
+              {name}
               <button
                 className="btn btn-danger"
-                id={todos.id}
-                onDelete={(id) =>
-                  setTodos(todos.filter((e) => e.id !== id))
-                }
+                onClick={() => {
+                  setTodos(todos.filter((e) => e.id !== id));
+                }}
               >
                 Delete
               </button>
-            </div>
+            </li>
           ))}
         </ul>
       </div>
